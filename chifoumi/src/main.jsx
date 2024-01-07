@@ -1,10 +1,27 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from'react-dom/client';
+import Login from './components/Login';
+import MatchList from './components/MatchList';
+import MatchDetail from './components/MatchDetail';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: '/Login',
+    element: <Login/>,
+  },
+  {
+    path: '/MatchList',
+    element: <MatchList />, // Ajoutez la route vers votre DashboardPage
+  },
+  {
+    path: '/Match/:id', // Renommez la route pour la page de jeu avec un paramètre d'ID
+    element: <MatchDetail />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
