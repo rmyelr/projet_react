@@ -3,6 +3,7 @@ import ReactDOM from'react-dom/client';
 import Login from './components/Login';
 import MatchList from './components/MatchList';
 import MatchDetail from './components/MatchDetail';
+import Register from './components/Register';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     path: '/Match/:id', // Renommez la route pour la page de jeu avec un paramètre d'ID
     element: <MatchDetail />,
   },
+  {
+    path: '/Register', 
+    element: <Register/>,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
