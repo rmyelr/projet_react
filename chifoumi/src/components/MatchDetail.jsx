@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import { useParams } from 'react-router-dom';
 
 const MatchDetails = () => {
@@ -8,7 +7,7 @@ const MatchDetails = () => {
 
     useEffect(() => {
         // Envoyer la requête GET pour récupérer les détails de la partie depuis le backend en utilisant l'ID dans les paramètres d'URL
-        fetch(`/api/matches/${id}`)
+        fetch(`http://fauques.freeboxos.fr:3000/matches/${id}`)
             .then(res => res.json())
             .then(data => {
                 setMatchDetails(data);
@@ -20,9 +19,15 @@ const MatchDetails = () => {
             <h1>Match Details</h1>
             {/* Afficher les détails de la partie */}
             <div>
-                {matchDetails.players &&
-                    <p>Players: {matchDetails.players.join(', ')}</p>
-                }
+                <p>Date: {matchDetails.date}</p>
+                <p>Heure: {matchDetails.time}</p>
+                <p>Nom du gagnant: {matchDetails.winner ? matchDetails.winner.username : 'En cours'}</p>
+                <p>Nombre de manches: {matchDetails.rounds ? matchDetails.rounds.length : 0}</p>
+                {/* Ajoutez d'autres détails selon vos besoins */}
+            </div>
+
+            {/* Afficher les détails des rounds */}
+            <div>
                 {matchDetails.rounds &&
                     matchDetails.rounds.map(round => (
                         <p key={round.id}>
@@ -34,6 +39,5 @@ const MatchDetails = () => {
         </div>
     );
 };
-
 
 export default MatchDetails;
