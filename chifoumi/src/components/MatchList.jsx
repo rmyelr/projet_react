@@ -1,85 +1,52 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+const matchItemStyle = {
+  listStyle: 'none',
+  marginBottom: '20px',
+  padding: '10px',
+  border: '1px solid #ddd',
+  borderRadius: '8px',
+};
+
+const matchLinkStyle = {
+  textDecoration: 'none',
+  color: '#333',
+};
+
 const MatchList = () => {
-    const [matches, setMatches] = useState([]);
-    const token = localStorage.getItem('token');
+  const [matches, setMatches] = useState([]);
 
-    useEffect(() => {
-        // Vérifier si le token est présent
-        if (!token) {
-            console.error('Token not found. User not authenticated.');
-            // Vous pouvez rediriger l'utilisateur vers la page de connexion ici
-            return;
-        }
+  useEffect(() => {
+    // Fetch matches from the backend
+    fetch('http://fauques.freeboxos.fr:3000/matches', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        setMatches(data);
+      });
+  }, []);
 
-        // Send GET request to retrieve list of matches from backend
-        fetch('http://fauques.freeboxos.fr:3000/matches', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-            .then(res => {
-                // Vérifier si la requête a réussi
-                if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                console.log('Data from server:', data);
-                setMatches(data);
-            })
-            .catch(error => {
-                console.error('Error fetching matches:', error);
-            });
-    }, [token]);
-
-    const handleCreateMatch = async () => {
-        try {
-            const res = await fetch('http://fauques.freeboxos.fr:3000/matches', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            // Vérifier si la requête a réussi
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
-            }
-
-            const responseData = await res.json();
-
-            // Handle the successful response
-            console.log('New match created:', responseData);
-            // Vous pouvez mettre à jour l'état avec le nouveau match ou rafraîchir la liste des matches
-            // setMatches([...matches, responseData]);
-        } catch (error) {
-            console.error('Error creating match:', error);
-        }
-    };
-
-    return (
-        <div>
-            <h1>Liste des matchs</h1>
-            <ul>
-                {matches.map(match => (
-                    <li key={match._id}>
-                        <Link to={`/match/${match._id}`}>
-                            <p>ID du Match: {match._id}</p>
-                            <p>User 1: {match.user1.username}</p>
-                            <p>User 2: {match.user2 ? match.user2.username : 'En attente'}</p>
-                            <p>Nombre de tours: {match.turns.length}</p>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            {/* Ajouter un bouton pour créer un nouveau match */}
-            <button onClick={handleCreateMatch}>Nouveau Match</button>
-        </div>
-    );
+  return (
+    <div>
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Liste des matchs</h1>
+      <ul>
+        {matches.map(match => (
+          <li key={match._id} style={matchItemStyle}>
+            <Link to={`/match/${match._id}`} style={matchLinkStyle}>
+              <p>ID du Match: {match._id}</p>
+              <p>User 1: {match.user1.username}</p>
+              <p>User 2: {match.user2 ? match.user2.username : 'En attente'}</p>
+              <p>Nombre de tours: {match.turns.length}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default MatchList;
