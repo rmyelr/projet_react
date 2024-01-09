@@ -4,6 +4,7 @@ import Login from './components/Login';
 import MatchList from './components/MatchList';
 import MatchDetail from './components/MatchDetail';
 import Register from './components/Register';
+import Rules from './components/Rules';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -22,7 +23,13 @@ const router = createBrowserRouter([
   {
     path: '/Register', 
     element: <Register/>,
+  },
+  {
+    path: '/Rules', 
+    element: <Rules/>,
   }
+
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
