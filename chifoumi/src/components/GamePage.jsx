@@ -1,56 +1,58 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-
-const gameContainerStyle = {
-  display: 'flex',
-  justifyContent: 'space-around',
-  marginTop: '20px',
-};
-
-const moveSelectionStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-};
-
-const buttonStyle = {
-  backgroundColor: '#4caf50',
-  color: 'white',
-  padding: '10px 20px',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  transition: 'background-color 0.3s ease',
-  marginBottom: '10px',
-};
-
-const selectedMoveStyle = {
-  marginTop: '20px',
-};
+import { useState } from 'react';
 
 const GamePage = () => {
-  const [selectedMove, setSelectedMove] = useState('');
 
-  const handleMoveSelection = (move) => {
-    // Handle move selection logic
-    setSelectedMove(move);
+  const handleMove = (move) => {
+    // Ajoutez ici la logique pour gérer le mouvement
+    console.log(`Move selected: ${move}`);
   };
 
   return (
-    <div>
-      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Game Page</h1>
-      {/* Add your game UI components and styling here */}
-      <div style={gameContainerStyle}>
-        <div style={moveSelectionStyle}>
-          <button onClick={() => handleMoveSelection('rock')} style={buttonStyle}>Rock</button>
-          <button onClick={() => handleMoveSelection('paper')} style={buttonStyle}>Paper</button>
-          <button onClick={() => handleMoveSelection('scissors')} style={buttonStyle}>Scissors</button>
-        </div>
-        <div style={selectedMoveStyle}>
-          <p>Selected Move: {selectedMove}</p>
-        </div>
+    <div style={styles.container}>
+      <h1 style={styles.heading}>Jouez à Chi Fu Mi</h1>
+      <div style={styles.buttonContainer}>
+        <button onClick={() => handleMove('rock')} style={styles.button}>
+          Pierre
+        </button>
+        <button onClick={() => handleMove('paper')} style={styles.button}>
+          Feuille
+        </button>
+        <button onClick={() => handleMove('scissors')} style={styles.button}>
+          Ciseaux
+        </button>
       </div>
     </div>
   );
+};
+
+
+const styles = {
+    container: {
+        fontFamily: 'Milk Mongo, sans-serif',
+        color: '#fff',
+        textAlign: 'center',
+        position: 'relative',
+    },
+    heading: {
+        fontSize: '36px',
+        marginBottom: '20px',
+    },
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '50px',
+    },
+    button: {
+        backgroundColor: '#61dafb',
+        color: '#fff',
+        padding: '15px 30px',
+        fontSize: '18px',
+        cursor: 'pointer',
+        border: 'none',
+        borderRadius: '5px',
+        margin: '0 10px',
+    },
 };
 
 export default GamePage;
