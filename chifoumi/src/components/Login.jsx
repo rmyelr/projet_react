@@ -9,7 +9,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         // Votre logique de connexion ici
-        navigate('/MatchList');
+        navigate('/GamePage');
     };
 
     const changeLanguage = (lang) => {
@@ -36,7 +36,6 @@ const Login = () => {
                             style={styles.input}
                             placeholder="username"
                         />
-                        <span>Username</span>
                     </label>
                     <label style={styles.label}>
                         Mot de passe:
@@ -47,7 +46,6 @@ const Login = () => {
                             style={styles.input}
                             placeholder="password"
                         />
-                        <span>Password</span>
                     </label>
                     <button type="button" onClick={handleLogin} style={styles.button}>
                         Se connecter
@@ -59,15 +57,15 @@ const Login = () => {
             </motion.div>
             <div style={styles.footer}>
                 Des questions ? Appelez le (+33) 0769944462
-                <br />Dévellopper par Merryl Zoure et Lorin Kakahoun
             </div>
-            <div>
+            <div style={styles.languageButton}>
                 <button onClick={() => changeLanguage('fr')}>Français</button>
                 <button onClick={() => changeLanguage('en')}>English</button>
                 {/* Ajoutez les autres langues selon vos besoins */}
             </div>
             <div style={styles.backgroundImages}>
-                
+                {/* Ajoutez le code pour les vignettes d'arrière-plan ici */}
+                {/* Assurez-vous d'ajuster les styles CSS pour les vignettes d'arrière-plan */}
             </div>
         </div>
     );
@@ -76,7 +74,7 @@ const Login = () => {
 const styles = {
     container: {
         fontFamily: 'Milk Mongo, sans-serif',
-        color: '#fff',
+        color: '#151947',
         textAlign: 'center',
         position: 'relative',
     },
@@ -114,17 +112,10 @@ const styles = {
     input: {
         padding: '10px',
         fontSize: '16px',
-        width: '100%',
+        width: '30%',
         boxSizing: 'border-box',
     },
-    ephemeralText: {
-        position: 'absolute',
-        top: '50%',
-        right: '10px',
-        transform: 'translateY(-50%)',
-        color: '#999',
-        fontSize: '12px',
-    },
+    
     button: {
         backgroundColor: '#61dafb',
         color: '#fff',
@@ -137,12 +128,19 @@ const styles = {
         marginRight: '10px',
     },
     registerLink: {
-        fontSize: '16px',
-        color: '#fff',
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        color: '#2F1E0E',
         textDecoration: 'none',
-        marginTop: '15px',
-        display: 'block',
-    },
+        backgroundColor: '#b3a089',
+        padding: '10px 20px',
+        fontSize: '10px',
+        cursor: 'pointer',
+        border: 'none',
+        borderRadius: '25px',
+        margin: '0 100px',
+      },
     footer: {
         marginTop: '50px',
     },

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from'react-dom/client';
 import Login from './components/Login';
 import MatchList from './components/MatchList';
-import MatchDetail from './components/MatchDetail';
+import MatchDetails from './components/MatchDetail';
 import Register from './components/Register';
 import GamePage from './components/GamePage';
 import Rules from './components/Rules';
@@ -18,12 +18,8 @@ const router = createBrowserRouter([
     element: <MatchList />, // Ajoutez la route vers votre DashboardPage
   },
   {
-    path: '/MatchDetail',
-    element: <MatchDetail />, // Ajoutez la route vers votre DashboardPage
-  },
-  {
     path: '/Match/:id', // Renommez la route pour la page de jeu avec un paramètre d'ID
-    element: <MatchDetail />,
+    element: <MatchDetails />,
   },
   {
     path: '/Register', 

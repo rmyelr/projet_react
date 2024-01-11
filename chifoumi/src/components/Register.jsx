@@ -21,7 +21,7 @@ const Register = () => {
 
         // Handle response
 
-        navigate('/login');
+        navigate('/');
     };
 
     return (

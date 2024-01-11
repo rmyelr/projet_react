@@ -14,6 +14,21 @@ const matchLinkStyle = {
   color: '#333',
 };
 
+const registerLink= {
+  position: 'fixed',
+  bottom: '20px',
+  right: '20px',
+  color: '#2F1E0E',
+  textDecoration: 'none',
+  backgroundColor: '#b3a089',
+  padding: '10px 20px',
+  fontSize: '10px',
+  cursor: 'pointer',
+  border: 'none',
+  borderRadius: '25px',
+  margin: '0 100px',
+};
+
 const MatchList = () => {
   const [matches, setMatches] = useState([]);
 
@@ -41,6 +56,9 @@ const MatchList = () => {
               <p>User 1: {match.user1.username}</p>
               <p>User 2: {match.user2 ? match.user2.username : 'En attente'}</p>
               <p>Nombre de tours: {match.turns.length}</p>
+              <Link to="/GamePage" style={registerLink}>
+                  Commencez le jeu
+              </Link>
             </Link>
           </li>
         ))}

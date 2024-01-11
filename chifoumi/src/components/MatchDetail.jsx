@@ -6,12 +6,23 @@ const MatchDetails = () => {
     const [matchDetails, setMatchDetails] = useState({});
 
     useEffect(() => {
-        // Envoyer la requête GET pour récupérer les détails de la partie depuis le backend en utilisant l'ID dans les paramètres d'URL
-        fetch(`/api/matches/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                setMatchDetails(data);
-            });
+        const token = localStorage.getItem('token');
+
+        // Assurez-vous que le token existe avant de faire la requête
+        if (token) {
+            // Envoyer la requête GET pour récupérer les détails de la partie depuis le backend en utilisant l'ID dans les paramètres d'URL
+            fetch(`http://fauques.freeboxos.fr:3000/matches/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setMatchDetails(data);
+                    console.log(data);
+                })
+                .catch(error => console.error('Error fetching match details:', error));
+        }
     }, [id]);
 
     return (
@@ -36,21 +47,20 @@ const MatchDetails = () => {
 
 const styles = {
     container: {
-        fontFamily: 'Milk Mongo, sans-serif', // Police personnalisée
-        color: '#fff', // Couleur du texte en mode sombre
-        backgroundColor: '#333', // Couleur d'arrière-plan en mode sombre
-        padding: '20px',
+        fontFamily: 'Milk Mongo, sans-serif',
+        color: '#fff',
         textAlign: 'center',
+        position: 'relative',
     },
     heading: {
-        fontSize: '24px',
+        fontSize: '36px',
         marginBottom: '20px',
     },
     detailsContainer: {
+        fontSize: '18px',
         marginTop: '20px',
     },
     text: {
-        fontSize: '16px',
         marginBottom: '10px',
     },
 };
