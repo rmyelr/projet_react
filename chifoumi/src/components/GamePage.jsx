@@ -7,7 +7,7 @@ const GamePage = () => {
   const [turnId, setTurnId] = useState(null);
 
   useEffect(() => {
-    // Vous pouvez mettre en œuvre ici la logique pour obtenir le tour actuel en fonction de la taille du tableau de tours
+    
     const turns = []; // Remplacez cela par la liste réelle des tours récupérée du backend
     const currentTurn = turns.length + 1; // Exemple simple : tour suivant
     setTurnId(currentTurn);
