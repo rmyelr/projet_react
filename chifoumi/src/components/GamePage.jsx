@@ -24,6 +24,7 @@ const GamePage = () => {
       fetch(`http://fauques.freeboxos.fr:3000/matches/${matchId}/turns/${turnId}`, {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ move: selectedMove }),
@@ -71,7 +72,7 @@ const GamePage = () => {
         </Link>
 
         <Link to="/MatchList" style={styles.registerLinkml}>
-          Liste des matches joués
+          Liste des matchs joués
         </Link>
     
     </div>

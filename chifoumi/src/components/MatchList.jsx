@@ -56,7 +56,7 @@ const MatchList = () => {
               <p>User 1: {match.user1.username}</p>
               <p>User 2: {match.user2 ? match.user2.username : 'En attente'}</p>
               <p>Nombre de tours: {match.turns.length}</p>
-              <Link to="/GamePage" style={registerLink}>
+              <Link to={`GamePage/${match._id}`} style={registerLink}>
                   Commencez le jeu
               </Link>
             </Link>

@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         // Your login logic here
-        navigate('/GamePage');
+        navigate('/MatchList');
     };
 
     const togglePasswordVisibility = () => {
