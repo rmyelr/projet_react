@@ -1,16 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 const GamePage = () => {
   const { matchId } = useParams();
   const [selectedMove, setSelectedMove] = useState(null);
   const [turnId, setTurnId] = useState(null);
+  const [timer, setTimer] = useState(30);
 
   useEffect(() => {
-    
     const turns = []; // Remplacez cela par la liste réelle des tours récupérée du backend
     const currentTurn = turns.length + 1; // Exemple simple : tour suivant
     setTurnId(currentTurn);
+
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => prevTimer - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, [matchId]);
 
   const handleMove = (move) => {
@@ -65,19 +73,25 @@ const GamePage = () => {
         <button onClick={handlePlay} style={styles.buttonJouer}>
           Jouer
         </button>
-    </div>
+      </div>
 
-        <Link to="/Rules" style={styles.registerLink}>
-          Règles du Jeu
-        </Link>
+      <p style={styles.selectionText}>
+        {selectedMove ? `Vous avez choisi : ${selectedMove}` : 'Aucun choix pour le moment.'}
+      </p>
 
-        <Link to="/MatchList" style={styles.registerLinkml}>
-          Liste des matchs joués
-        </Link>
-    
+      <p style={styles.timer}>Temps restant : {timer} secondes</p>
+
+      <Link to="/Rules" style={styles.registerLink}>
+        Règles du Jeu
+      </Link>
+
+      <Link to="/MatchList" style={styles.registerLinkml}>
+        Liste des matchs joués
+      </Link>
     </div>
   );
 };
+
 
 
 const styles = {
@@ -149,7 +163,20 @@ const styles = {
     borderRadius: '5px',
     margin: '0px 20px',
   },
-};
+  selectionText: {
+    fontSize: '18px',
+    marginTop: '20px',
+    color: '#2F1E0E',
+  },
 
+  timer: {
+    fontSize: '18px',
+    marginTop: '10px',
+    color: '#2F1E0E',
+  },
+};
+GamePage.propTypes = {
+  match: PropTypes.object.isRequired,
+};
 
 export default GamePage;

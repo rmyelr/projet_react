@@ -151,7 +151,7 @@ const styles = {
         zIndex: 1,
         color: '#2F1E0E',
         textDecoration: 'none',
-        backgroundColor: '#b3a089',
+        backgroundColor: '#e0e0e0',
         padding: '5px 10px',
         fontSize: '8px',
         cursor: 'pointer',

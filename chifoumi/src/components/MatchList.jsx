@@ -51,7 +51,7 @@ const MatchList = () => {
       <ul>
         {matches.map(match => (
           <li key={match._id} style={matchItemStyle}>
-            <Link to={`/match/${match._id}`} style={matchLinkStyle}>
+            <Link to={`/GamePage/${match._id}`} style={matchLinkStyle}>
               <p>ID du Match: {match._id}</p>
               <p>User 1: {match.user1.username}</p>
               <p>User 2: {match.user2 ? match.user2.username : 'En attente'}</p>

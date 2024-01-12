@@ -92,7 +92,7 @@ const Register = () => {
                     <button type="button" onClick={handleRegister} style={styles.button}>
                         {currentLanguage === 'en' ? 'Register' : currentLanguage === 'fr' ? 'S\'inscrire' : currentLanguage === 'de' ? 'Registrieren' : currentLanguage === 'ja' ? '登録' : 'Registro'}
                     </button>
-                    <Link to="/Login" style={styles.loginLink}>
+                    <Link to="/" style={styles.loginLink}>
                         {currentLanguage === 'en' ? 'Already have an account? Login' : currentLanguage === 'fr' ? 'Vous avez déjà un compte? Connectez-vous' : currentLanguage === 'de' ? 'Haben Sie bereits ein Konto? Anmelden' : currentLanguage === 'ja' ? 'すでにアカウントをお持ちですか？ ログイン' : '¿Ya tienes una cuenta? Iniciar sesión'}
                     </Link>
                 </form>
